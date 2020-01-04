@@ -112,8 +112,10 @@ const getDomainHostedZoneId = async (route53, domain, privateZone) => {
   const hostedZonesRes = await route53.listHostedZonesByName().promise()
 
   const hostedZone = hostedZonesRes.HostedZones.find(
-    // Name has a period at the end, so we're using includes rather than equals
-    (zone) => zone.Config.PrivateZone === privateZone && zone.Name.includes(domain)
+    // Name has a period at the end, so we're comparing it accordingly
+    (zone) =>
+      zone.Config.PrivateZone === privateZone &&
+      (zone.Name === domain || zone.Name === `${domain}.`)
   )
 
   if (!hostedZone) {
