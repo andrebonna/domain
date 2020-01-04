@@ -1,5 +1,5 @@
 {
-  "name": "@serverless/domain",
+  "name": "@andre.bonna/domain",
   "version": "6.1.0",
   "main": "./serverless.js",
   "publishConfig": {
